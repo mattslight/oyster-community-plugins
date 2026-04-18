@@ -1,0 +1,10 @@
+[
+  {
+    "id": "pomodoro",
+    "name": "Pomodoro",
+    "author": "Matthew Slight",
+    "authorUrl": "https://github.com/mattslight",
+    "description": "Classic 25/5/15 focus timer. Keyboard shortcuts, auto-advance, sound cues.",
+    "repo": "mattslight/oyster-sample-plugin"
+  }
+]
