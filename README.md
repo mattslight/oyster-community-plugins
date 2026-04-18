@@ -4,8 +4,8 @@ The registry of community-built plugins for [Oyster](https://oyster.to).
 
 This repo is read by:
 - **[oyster.to/plugins](https://oyster.to/plugins)** — the public browse page
-- The Oyster in-app plugin browser (future, Tier 3)
-- The `oyster install` CLI (future, Tier 2)
+- The `oyster install <id>` CLI — resolves the given id here, then pulls the latest release from the plugin's repo
+- The Oyster in-app plugin browser (future)
 
 One source of truth — `community-plugins.json` — drives all three surfaces.
 
@@ -29,7 +29,7 @@ Open a PR adding one entry to `community-plugins.json`:
 Your plugin's GitHub repo must:
 
 1. **Have a `manifest.json` at the repo root** conforming to the [Oyster plugin manifest schema](https://github.com/mattslight/oyster-os/blob/main/docs/plans/plugin-system.md).
-2. **Use a unique `id`** (lowercase, no spaces) — this becomes the folder name when installed. IDs are first-come-first-served. **Never change the `id` after release.**
+2. **Use a unique `id`** — lowercase, hyphenated, `^[a-z0-9][a-z0-9-]{0,63}$`. This is what users type — `oyster install <id>` — and also the folder name when installed. IDs are first-come-first-served. **Never change the `id` after release** (it lives in user configs and install paths).
 3. **Publish a GitHub Release** (tagged with the version in `manifest.json`, prefixed `v` — e.g. `v0.1.0`). Attach:
    - `manifest.json`
    - A plugin bundle zip (for static plugins) OR `main.js` (+ `styles.css` for future `bundle` runtime)
@@ -58,7 +58,7 @@ Open a PR removing the entry. Reasons to remove:
 
 | Field | Required | Purpose |
 |---|---|---|
-| `id` | yes | Plugin ID. Must match `manifest.json`. Used as the folder name on install. |
+| `id` | yes | Plugin ID. Must match the plugin's `manifest.json`. Used as the CLI install argument (`oyster install <id>`) and the folder name on install. |
 | `name` | yes | Human-readable display name. |
 | `author` | yes | Your name or handle. |
 | `authorUrl` | no | Link to your homepage / GitHub. |
