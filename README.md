@@ -1,39 +1,39 @@
-# Oyster Community Plugins
+# Oyster Community Apps
 
-The registry of community-built plugins for [Oyster](https://oyster.to).
+The registry of community-built apps for [Oyster](https://oyster.to).
 
 This repo is read by:
-- **[oyster.to/plugins](https://oyster.to/plugins)** — the public browse page
-- The `oyster install <id>` CLI — resolves the given id here, then pulls the latest release from the plugin's repo
-- The Oyster in-app plugin browser (future)
+- **[oyster.to/apps](https://oyster.to/apps)** — the public browse page
+- The `oyster install <id>` CLI — resolves the given id here, then pulls the latest release from the app's repo
+- The Oyster in-app browser (future)
 
-One source of truth — `community-plugins.json` — drives all three surfaces.
+One source of truth — `community-apps.json` — drives all three surfaces.
 
-## List your plugin here
+## List your app here
 
-Open a PR adding one entry to `community-plugins.json`:
+Open a PR adding one entry to `community-apps.json`:
 
 ```json
 {
-  "id": "your-plugin-id",
-  "name": "Your Plugin",
+  "id": "your-app-id",
+  "name": "Your App",
   "author": "Your Name",
   "authorUrl": "https://github.com/you",
   "description": "One-line summary of what it does.",
-  "repo": "your-username/your-plugin-repo"
+  "repo": "your-username/your-app-repo"
 }
 ```
 
 ## Requirements
 
-Your plugin's GitHub repo must:
+Your app's GitHub repo must:
 
-1. **Have a `manifest.json` at the repo root** conforming to the [Oyster plugin manifest schema](https://github.com/mattslight/oyster-os/blob/main/docs/plans/plugin-system.md).
+1. **Have a `manifest.json` at the repo root** conforming to the [Oyster app manifest schema](https://github.com/mattslight/oyster-os/blob/main/docs/plans/apps-system.md).
 2. **Use a unique `id`** — lowercase, hyphenated, `^[a-z0-9][a-z0-9-]{0,63}$`. This is what users type — `oyster install <id>` — and also the folder name when installed. IDs are first-come-first-served. **Never change the `id` after release** (it lives in user configs and install paths).
 3. **Publish a GitHub Release** (tagged with the version in `manifest.json`, prefixed `v` — e.g. `v0.1.0`). Attach:
    - `manifest.json`
-   - A plugin bundle zip (for static plugins) OR `main.js` (+ `styles.css` for future `bundle` runtime)
-4. **Have an OSI-approved licence** in the repo root. MIT is recommended for plugins.
+   - An app bundle zip (for static apps) OR `main.js` (+ `styles.css` for future `bundle` runtime)
+4. **Have an OSI-approved licence** in the repo root. MIT is recommended.
 
 ## Review process
 
@@ -42,15 +42,15 @@ PRs are reviewed for:
 - Correct manifest shape
 - Unique, non-reserved `id`
 - No malicious code (spot-check of the latest release)
-- No duplicate functionality of an existing plugin with a trivially different name
+- No duplicate functionality of an existing app with a trivially different name
 
 Reviews are best-effort, single-maintainer today. If you're blocked, ping on the Oyster Discord (link in [oyster-os](https://github.com/mattslight/oyster-os)).
 
-## Removing a plugin
+## Removing an app
 
 Open a PR removing the entry. Reasons to remove:
 
-- Plugin is abandoned and incompatible with current Oyster
+- App is abandoned and incompatible with current Oyster
 - Security issue and no response from the author within 14 days
 - Author request
 
@@ -58,7 +58,7 @@ Open a PR removing the entry. Reasons to remove:
 
 | Field | Required | Purpose |
 |---|---|---|
-| `id` | yes | Plugin ID. Must match the plugin's `manifest.json`. Used as the CLI install argument (`oyster install <id>`) and the folder name on install. |
+| `id` | yes | App ID. Must match the app's `manifest.json`. Used as the CLI install argument (`oyster install <id>`) and the folder name on install. |
 | `name` | yes | Human-readable display name. |
 | `author` | yes | Your name or handle. |
 | `authorUrl` | no | Link to your homepage / GitHub. |
